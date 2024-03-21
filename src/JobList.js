@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-
+// Handles job list
 function JobList({ jobs, onJobSelect }) {
   return (
     <div className="jobs-container"> {}

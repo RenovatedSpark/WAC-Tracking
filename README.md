@@ -14,6 +14,14 @@ This command will install all the necessary dependencies listed in 'package.json
 
 This command runs the app in development mode. Open http://localhost:3000 to view it in the browser.
 
+## Struggles
+
+Was unable to access API, received the following error: "Access to fetch at 'https://uccc7nj764.execute-api.us-west-2.amazonaws.com/employees' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource."
+
+As a result, I just created mock data and used that rathe than focusing on the API issue.
+
+Had trouble with the onClick effect of saving the data into JSON file, found alternative to save 'Current' and 'Completed' jobs.
+
 # Backend Architecture
 
 ## Tech Stack

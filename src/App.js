@@ -44,8 +44,8 @@ function App() {
     // Set the new job as the active job and record its start time
     setActiveJobs({ ...activeJobs, [employeeName]: jobName });
     setJobStartTimes({ ...jobStartTimes, [employeeName]: { job: jobName, startTime: currentTime } });
-};
-const handleExportToJson = () => {
+  };
+  const handleExportToJson = () => {
   const fileName = `employee-job-assignments-${new Date().toISOString()}.json`;
 
   // Combine active and completed jobs for export
@@ -59,7 +59,7 @@ const handleExportToJson = () => {
     completedJobs,
     activeJobs: activeJobsArray,
   };
-
+  // Handles exporting information as JSON page
   const json = JSON.stringify(dataToExport, null, 2);
   const blob = new Blob([json], { type: "application/json" });
   const href = URL.createObjectURL(blob);
@@ -72,15 +72,15 @@ const handleExportToJson = () => {
 
   URL.revokeObjectURL(href);
   link.remove();
-};
-
-return (
+  };
+  // Returns the list of Employees and jobs assigned to each of them
+  return (
   <div className="app-container">
-    <h2>Employee List</h2> {/* Title for the Employee List */}
+    <h2>Employee List</h2> {}
     <EmployeeList employees={mockEmployees} onSelectEmployee={handleSelectEmployee} />
     {selectedEmployee && (
       <>
-        <h2>Job List</h2> {/* Title for the Job List */}
+        <h2>Job List</h2> {}
         <div className="jobs-container">
           <JobList jobs={selectedEmployee.tasks} onJobSelect={handleJobSelect} />
         </div>
@@ -90,7 +90,7 @@ return (
       Export Work Log
     </button>
   </div>
-);
+  );
 }
 
 export default App;
