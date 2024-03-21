@@ -32,9 +32,9 @@ Local State Management: Handling the state of UI components, such as which emplo
 Sending Requests: Making requests to Firebase to authenticate users, retrieve the list of employees and jobs, and send updates when a job is started or ended.
 Real-time Updates: Subscribing to real-time updates from Firestore to reflect changes in the UI without the need for manual refreshes.
 Exporting Data: Generating export files based on the data retrieved from Firestore and triggering the download for the user.
+
 Backend Responsibilities:
 Data Storage: Persisting employee data, job data, and work logs. The Firestore database will store this structured data, enforce security rules, and allow queries.
-Business Logic: Complex business logic should be handled by Cloud Functions. For example, calculating the total hours worked and updating the work log.
 Authentication: Managing user sign-up, sign-in, and access control. Firebase Authentication will handle this, using security rules to ensure users can only access appropriate data.
 Data Validation: Ensuring the integrity of data being stored. Firestore rules can define validation logic to ensure, for example, that job names conform to certain standards, and timestamps are valid.
 File Storage: Managing uploads and downloads of files if needed, using Firebase Storage. This could be used for handling CSV/JSON file exports if they're generated
