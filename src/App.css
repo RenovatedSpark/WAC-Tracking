@@ -1,0 +1,79 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+h2 {
+  color: #007bff; /* Match the color scheme of your buttons */
+  margin: 20px 0; /* Add some vertical space around titles */
+}
+
+/* App-wide styles to center content */
+.app-container {
+  padding: 300px 10px 10px; /* Top, Horizontal, Bottom */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh; /* Use 100vh for full viewport height, not 100px */
+}
+
+.employee-container, .jobs-container {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: row; /* Align items in a row */
+  flex-wrap: wrap; /* Allow items to move to the next line if space runs out */
+  justify-content: center; /* Center the row of items */
+  gap: 5px; /* Adjust the gap to manage space between items */
+  width: 100%; /* Ensure containers take full width to utilize space */
+}
+
+.button-hover-effect, .export-button {
+  font-size: 24px; /* Larger font size for readability */
+  padding: 12px 25px; /* Adjust padding to manage button size */
+  margin: 0; /* Minimize margin to reduce space around buttons */
+  border: 2px solid #007bff; /* Maintain border for visibility */
+  border-radius: 8px; /* Slightly round corners */
+  cursor: pointer;
+  transition: all 0.3s ease-in-out; /* Smooth transition for visual feedback */
+}
+
+.export-button {
+  margin-top: 20px; /* Reduce space above the export button */
+  padding: 15px 30px; /* Ensure padding is sufficient for easy interaction */
+  background-color: #007bff;
+}
