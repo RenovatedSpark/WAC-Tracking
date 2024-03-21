@@ -1,71 +1,61 @@
-# Getting Started with Create React App
+# Getting Started with the React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## After cloning repository, run
 
-In the project directory, you can run:
+### `npm install`
+
+This command will install all the necessary dependencies listed in 'package.json'.
+
+## Start the application
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This command runs the app in development mode. Open http://localhost:3000 to view it in the browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Backend Architecture
 
-### `npm test`
+## Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Web Server: Since Firebase offers a serverless approach, there's no need to set up a traditional web server. Firebase's suite of tools will handle the server-side functionality.
+Database: Use Firebase Firestore, a NoSQL cloud database to store and sync data in real-time. It is flexible and scales easily.
+Authentication: Utilize Firebase Authentication for managing users and handling authentication securely.
+Hosting: Deploy the frontend application on Firebase Hosting for a cohesive ecosystem.
+Storage: Use Firebase Storage for storing any files, such as CSV/JSON exports.
+APIs/Cloud Functions: For any additional backend logic that cannot be handled directly in Firestore rules, use Firebase Cloud Functions, which allows running backend code in response to HTTP requests or other Firebase events.
 
-### `npm run build`
+## Separation of Work Between Frontend and Backend
+Frontend Responsibilities:
+User Interface: Displaying UI components like employee lists, job lists, and buttons to interact with the application.
+Local State Management: Handling the state of UI components, such as which employee is selected, which jobs are being displayed, and the state of the job tracking (active/inactive).
+Sending Requests: Making requests to Firebase to authenticate users, retrieve the list of employees and jobs, and send updates when a job is started or ended.
+Real-time Updates: Subscribing to real-time updates from Firestore to reflect changes in the UI without the need for manual refreshes.
+Exporting Data: Generating export files based on the data retrieved from Firestore and triggering the download for the user.
+Backend Responsibilities:
+Data Storage: Persisting employee data, job data, and work logs. The Firestore database will store this structured data, enforce security rules, and allow queries.
+Business Logic: Complex business logic should be handled by Cloud Functions. For example, calculating the total hours worked and updating the work log.
+Authentication: Managing user sign-up, sign-in, and access control. Firebase Authentication will handle this, using security rules to ensure users can only access appropriate data.
+Data Validation: Ensuring the integrity of data being stored. Firestore rules can define validation logic to ensure, for example, that job names conform to certain standards, and timestamps are valid.
+File Storage: Managing uploads and downloads of files if needed, using Firebase Storage. This could be used for handling CSV/JSON file exports if they're generated
+on the server rather than on the client-side.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Firebase Specifics:
+Real-time Sync: Utilizing Firebase's real-time database capabilities, the backend will update the frontend with any changes to the data without the need for a refresh.
+Security: Implementing security rules in Firestore to manage read/write access to the database collections based on user roles.
+Serverless Functions: Using Firebase Cloud Functions to handle operations that should not be exposed to the frontend, such as generating reports or processing data before storing it.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Example of Operations:
+Frontend:
+Authenticating users.
+Sending start/end job events.
+Displaying real-time updates of active jobs.
+Exporting job logs as CSV/JSON, which can be done client-side.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# WAC-Tracking
+Backend:
+Storing user accounts and managing sessions (via Firebase Authentication).
+Persisting job start/end times and durations (via Firestore).
+Running scheduled tasks or triggered functions for maintenance or report generation (via Cloud Functions).
+Storing exported CSV/JSON files if they need to be kept for records or shared (via Firebase Storage).
+Enforcing business logic such as verifying job durations or processing time logs.
+Sending notifications or emails based on specific triggers, such as a job being overdue (potentially using Firebase Extensions or Cloud Functions).
